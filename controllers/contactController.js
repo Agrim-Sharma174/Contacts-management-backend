@@ -1,10 +1,13 @@
 const asyncHandler = require("express-async-handler");
+const Contact = require("../models/contactModel");
 
 //@desc Get all the contacts
 //@route GET /api/contacts
 //@access public
 const getContacts = asyncHandler( async (req, res) => {
-    res.status(200).json({ message: "Get all contacts" });
+    const contacts = await Contact.find();
+    // res.status(200).json({ message: "Get all contacts" }); //! when we haven't used the database, we used this line, but now we will use the database, so we will comment this line.
+    res.status(200).json(contacts);
 });
 
 
@@ -18,7 +21,15 @@ const createContact = asyncHandler( async (req, res) => {
         res.status(400);
         throw new Error("Please enter all the fields");
     }
-    res.status(201).json({ message: "Create contact" });
+    const contact = await Contact.create({
+        name,
+        email,
+        phone,
+    });
+    // res.status(201).json({ message: "Create contact" }); //! this was before using the database, now we will use the database, so we will comment this line.
+
+    res.status(201).json(contact);
+    
 });
 
 //@desc Get contact
