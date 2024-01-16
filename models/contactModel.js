@@ -18,3 +18,5 @@ const contactSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model("Contact", contactSchema);
+
+// we will add this in the controller controllers/contactController.js
