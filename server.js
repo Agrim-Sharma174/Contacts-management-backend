@@ -10,6 +10,7 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json()); // -a express provided middleware- when we accept a data from client to server, we have to use a middleware. if we don't use this line, the console.log("...", req.bdy) will show req.body as undefined(when we use the body tab of thunderclient, to enter the data)- while creating contact
 app.use("/api/contacts", require("./routes/contactRoutes"));
+app.use("/api/users", require("./routes/userRoutes"));
 app.use(errorHandler);// we made a middleware in the folder middleware... and getting it here... when we get error, it is not in json format, but in html, if we need to change it, we need to make middleware which takes in response and gives it in the form of json.
 
 // 1st iteration-
