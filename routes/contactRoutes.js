@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { getContacts, createContact, getContact, updateContact, deleteContact } = require("../controllers/contactController");
+const validateToken = require("../middleware/validateTokenHandler");
 
 //* 2nd iteration- router.route("/").get(getContacts);
 
@@ -31,6 +32,7 @@ const { getContacts, createContact, getContact, updateContact, deleteContact } =
 //     res.status(200).json({message: `Delete contacts for ${req.params.id}`});
 // });
 
+router.use(validateToken); //? This will be used for all the routes below this line. So, we don't have to write validateToken for each and every route. other way to do this is like in userRoutes.js, where we have written validateToken for only one route- router.get("/current", validateToken, currentUser);(we used validateToken for only this route, not for others)
 router.route("/").get(getContacts).post(createContact);
 router.route("/:id").get(getContact).put(updateContact).delete(deleteContact);
 

@@ -23,3 +23,5 @@ const validateToken = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = validateToken;
+
+//this code is a middleware, which will be used in the routes, where we want to validate the token. like see in the contactRoutes.js, we have used this middleware in all the routes, where we want to validate the token. in the contactRoutes we are taking req.user.id for the get method, matlab wo dekhega ki kon maang rha hai data, to the above code has req.user which is making it possible for us to use req.user.id in the contactRoutes.js file.
